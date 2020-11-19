@@ -17,12 +17,4 @@ router.get('/cashflow', async (req, res, next) => {
   }
 });
 
-router.get('/merchants', async (req, res, next) => {
-  try {
-    res.status(501).json({ message: 'Not Implemented' });
-  } catch (err) {
-    return next(err);
-  }
-});
-
 module.exports = router;

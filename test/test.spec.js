@@ -30,12 +30,4 @@ describe('Insights Service', () => {
       });
     });
   });
-  describe('/merchants', () => {
-    context('it is yet to be implemented', () => {
-      it('should return a 501 error', async () => {
-        const response = await request('/merchants');
-        response.statusCode.should.equal(501);
-      });
-    });
-  });
 });
