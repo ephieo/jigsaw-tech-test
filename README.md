@@ -71,27 +71,11 @@ returns a daily cashflow of all transactions grouped by day. For days on which t
     "totalValue": 400,
     "averageValue": 40
   },
-}
-```
-3. `GET /insights/merchants`
-
-User Story:
-```
-As a User
-So that I can understand where I spend most of my money
-I want to see a breakdown of my spending by merchant
-```
-
-returns a daily cashflow of all transactions grouped by day. For days on which there is no data return 0 for all fields. 
-
-```json
-{
-  "Starbucks": {
-    "totalNumber": 5,
-    "totalValue": 25,
-    "averageValue": 5
+  "03/01/2019": {
+    "totalNumber": 0,
+    "totalValue": 0,
+    "averageValue": 0
   },
-  ...
 }
 ```
 
