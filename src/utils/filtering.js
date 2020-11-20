@@ -1,9 +1,16 @@
+const e = require('express');
+
 function length(data, searchName) {
   return data.filter((e) => e.category === `${searchName}`).length;
 }
 
+let count = 0;
+
 function filterDate(data, searchDate) {
-  return data.filter((e) => e.paymentDate <= `${searchDate}`);
+  //   console.log('filter', data);
+  return data.filter((e) =>
+    new Date(e.paymentDate).toString().includes(`${searchDate}`)
+  );
 }
 
 function getTotalValue(data, searchName) {

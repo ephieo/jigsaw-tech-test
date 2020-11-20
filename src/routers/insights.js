@@ -59,9 +59,16 @@ router.get('/cashflow', (req, res, next) => {
     .then((res) => res.json())
     .then((result) => {
       let filter = findDates().map((e) => {
+        // console.log(e);
         return paymentDates.includes(e)
           ? { e: filterDate(result, e) }
-          : 'wrong';
+          : {
+              date: {
+                totalNumber: 0,
+                totalValue: 0,
+                averageValue: 0,
+              },
+            };
       });
 
       res.send(filter);
