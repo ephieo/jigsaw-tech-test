@@ -114,8 +114,4 @@ router.get('/cashflow', (req, res, next) => {
     .catch(next);
 });
 module.exports = router;
-// "03/01/2019": {
-//   "totalNumber": 0,
-//   "totalValue": 0,
-//   "averageValue": 0
-// }
+
