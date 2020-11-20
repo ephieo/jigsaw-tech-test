@@ -54,7 +54,7 @@ router.get('/categories', (req, res, next) => {
 
 ///// get request for all transactions by date.
 
-router.get('/cashflow', (req, res, next) => {
+router.get('/cashflow/attempt1', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
@@ -75,7 +75,7 @@ router.get('/cashflow', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/cashflow/1', (req, res, next) => {
+router.get('/cashflow', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
