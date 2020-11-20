@@ -9,6 +9,12 @@ const {
   filterDate,
 } = require('./../utils/filtering');
 
+router.get('/', async (req, res, next) => {
+  fetch('http://54.154.227.172:3000/transactions')
+    .then((res) => res.json())
+    .then((result) => res.send(result))
+    .catch(next);
+});
 ///// get request for all transaction categories
 
 router.get('/categories', (req, res, next) => {
@@ -48,7 +54,7 @@ router.get('/categories', (req, res, next) => {
 
 ///// get request for all transactions by date.
 
-router.get('/cashflow', (req, res, next) => {
+router.get('/cashflow/attempt1', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
@@ -69,4 +75,47 @@ router.get('/cashflow', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/cashflow', (req, res, next) => {
+  fetch('http://54.154.227.172:3000/transactions')
+    .then((res) => res.json())
+    .then((result) => {
+      let obj = paymentDates.map((date) => {
+        console.log(date);
+        return {
+          date: `${date}`,
+          totalNumber: result.filter((e) =>
+            new Date(e.paymentDate).toString().includes(`${date}`)
+          ).length,
+          averageValue:
+            result
+              .filter((e) =>
+                new Date(e.paymentDate).toString().includes(`${date}`)
+              )
+              .map((obj) => {
+                return obj.amount;
+              })
+              .reduce((a, b) => a + b) /
+            result.filter((e) =>
+              new Date(e.paymentDate).toString().includes(`${date}`)
+            ).length,
+          totalValue: result
+            .filter((e) =>
+              new Date(e.paymentDate).toString().includes(`${date}`)
+            )
+            .map((obj) => {
+              return obj.amount;
+            })
+            .reduce((a, b) => a + b),
+        };
+      });
+
+      res.send(obj);
+    })
+    .catch(next);
+});
 module.exports = router;
+// "03/01/2019": {
+//   "totalNumber": 0,
+//   "totalValue": 0,
+//   "averageValue": 0
+// }
