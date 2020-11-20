@@ -3,7 +3,7 @@ function findDates() {
   let periodOfTime = [];
 
   for (var i = new Date(2020, 9, 9); i <= now; i.setDate(i.getDate() + 1)) {
-    periodOfTime.push(new Date(i).toLocaleString().split(',')[0]);
+    periodOfTime.push(new Date(i).toString());
   }
 
   return periodOfTime;
@@ -11,20 +11,35 @@ function findDates() {
 
 findDates();
 
-const paymentDates = {
-  '09/10/2020': {},
-  '29/10/2020': {},
-  '30/10/2020': {},
-  '04/11/2020': {},
-  '02/11/2020': {},
-  '19/10/2020': {},
-  '13/10/2020': {},
-  '28/10/2020': {},
-  '20/10/2020': {},
-  '16/10/2020': {},
-  '12/10/2020': {},
-  '22/10/2020': {},
-  '14/10/2020': {},
-};
+// const paymentDates = [
+//   '2020-10-09T00:00:00.000Z',
+//   '2020-10-29T00:00:00.000Z',
+//   '2020-10-30T00:00:00.000Z',
+//   '2020-11-04T00:00:00.000Z',
+//   '2020-11-02T00:00:00.000Z',
+//   '2020-10-19T00:00:00.000Z',
+//   '2020-10-13T00:00:00.000Z',
+//   '2020-10-28T00:00:00.000Z',
+//   '2020-10-20T00:00:00.000Z',
+//   '2020-10-16T00:00:00.000Z',
+//   '2020-10-12T00:00:00.000Z',
+//   '2020-10-22T00:00:00.000Z',
+//   '2020-10-14T00:00:00.000Z',
+// ];
+const paymentDates = [
+  new Date('2020-10-09T00:00:00.000Z').toString(),
+  new Date('2020-10-29T00:00:00.000Z').toString(),
+  new Date('2020-10-30T00:00:00.000Z').toString(),
+  new Date('2020-11-04T00:00:00.000Z').toString(),
+  new Date('2020-11-02T00:00:00.000Z').toString(),
+  new Date('2020-10-19T00:00:00.000Z').toString(),
+  new Date('2020-10-13T00:00:00.000Z').toString(),
+  new Date('2020-10-28T00:00:00.000Z').toString(),
+  new Date('2020-10-20T00:00:00.000Z').toString(),
+  new Date('2020-10-16T00:00:00.000Z').toString(),
+  new Date('2020-10-12T00:00:00.000Z').toString(),
+  new Date('2020-10-22T00:00:00.000Z').toString(),
+  new Date('2020-10-14T00:00:00.000Z').toString(),
+];
 
 module.exports = { findDates, paymentDates };

@@ -6,6 +6,7 @@ const {
   length,
   getTotalValue,
   getTotalAverage,
+  filterDate,
 } = require('./../utils/filtering');
 
 //get request for all transactions
@@ -57,7 +58,13 @@ router.get('/cashflow', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
-      res.send('hello');
+      let filter = findDates().map((e) => {
+        return paymentDates.includes(e)
+          ? { e: filterDate(result, e) }
+          : 'wrong';
+      });
+
+      res.send(filter);
     })
     .catch(next);
 });
