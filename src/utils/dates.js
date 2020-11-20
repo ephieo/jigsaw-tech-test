@@ -5,11 +5,8 @@ function findDates() {
   for (var i = new Date(2020, 9, 9); i <= now; i.setDate(i.getDate() + 1)) {
     periodOfTime.push(new Date(i).toString());
   }
-  //   console.log(periodOfTime);
   return periodOfTime;
 }
-
-findDates();
 
 const paymentDates = [
   new Date('2020-10-09T00:00:00.000Z').toString(),

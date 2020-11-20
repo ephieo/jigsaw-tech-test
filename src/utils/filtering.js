@@ -1,13 +1,8 @@
-const e = require('express');
-
 function length(data, searchName) {
   return data.filter((e) => e.category === `${searchName}`).length;
 }
 
-let count = 0;
-
 function filterDate(data, searchDate) {
-  //   console.log('filter', data);
   return data.filter((e) =>
     new Date(e.paymentDate).toString().includes(`${searchDate}`)
   );
@@ -34,4 +29,9 @@ function getTotalAverage(data, searchName) {
   );
 }
 
-module.exports = { length, getTotalValue, getTotalAverage, filterDate };
+module.exports = {
+  length,
+  getTotalValue,
+  getTotalAverage,
+  filterDate,
+};

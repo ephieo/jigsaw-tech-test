@@ -9,14 +9,6 @@ const {
   filterDate,
 } = require('./../utils/filtering');
 
-//get request for all transactions
-
-router.get('/', (req, res, next) => {
-  fetch('http://54.154.227.172:3000/transactions')
-    .then((response) => response.json())
-    .then((result) => res.send(result))
-    .catch(next);
-});
 ///// get request for all transaction categories
 
 router.get('/categories', (req, res, next) => {
@@ -54,12 +46,13 @@ router.get('/categories', (req, res, next) => {
     .catch(next);
 });
 
+///// get request for all transactions by date.
+
 router.get('/cashflow', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
       let filter = findDates().map((e) => {
-        // console.log(e);
         return paymentDates.includes(e)
           ? { e: filterDate(result, e) }
           : {
