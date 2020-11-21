@@ -54,33 +54,32 @@ router.get('/categories', (req, res, next) => {
 
 ///// get request for all transactions by date.
 
-router.get('/cashflow/attempt1', (req, res, next) => {
-  fetch('http://54.154.227.172:3000/transactions')
-    .then((res) => res.json())
-    .then((result) => {
-      let filter = findDates().map((e) => {
-        return paymentDates.includes(e)
-          ? { e: filterDate(result, e) }
-          : {
-              date: {
-                totalNumber: 0,
-                totalValue: 0,
-                averageValue: 0,
-              },
-            };
-      });
+// router.get('/cashflow/attempt1', (req, res, next) => {
+//   fetch('http://54.154.227.172:3000/transactions')
+//     .then((res) => res.json())
+//     .then((result) => {
+//       let filter = findDates().map((e) => {
+//         return paymentDates.includes(e)
+//           ? { e: filterDate(result, e) }
+//           : {
+//               date: {
+//                 totalNumber: 0,
+//                 totalValue: 0,
+//                 averageValue: 0,
+//               },
+//             };
+//       });
 
-      res.send(filter);
-    })
-    .catch(next);
-});
+//       res.send(filter);
+//     })
+//     .catch(next);
+// });
 
 router.get('/cashflow', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
-      let obj = paymentDates.map((date) => {
-        console.log(date);
+      let transactionObj = paymentDates.map((date) => {
         return {
           date: `${date}`,
           totalNumber: result.filter((e) =>
@@ -108,10 +107,22 @@ router.get('/cashflow', (req, res, next) => {
             .reduce((a, b) => a + b),
         };
       });
+      let noTransactionObj = findDates()
+        .filter((e) => !new Date(e.paymentDate).toString().includes(e))
+        .map((e) => {
+          return {
+            date: {
+              date:
+                new Date(e.paymentDate).toString() <= e ? e : 'not availible',
+              totalNumber: 0,
+              totalValue: 0,
+              averageValue: 0,
+            },
+          };
+        });
 
-      res.send(obj);
+      res.send({ transactionObj, noTransactionObj });
     })
     .catch(next);
 });
 module.exports = router;
-
