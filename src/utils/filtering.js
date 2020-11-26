@@ -2,11 +2,11 @@ function length(data, searchName) {
   return data.filter((e) => e.category === `${searchName}`).length;
 }
 
-function filterDate(data, searchDate) {
-  return data.filter((e) =>
-    new Date(e.paymentDate).toString().includes(`${searchDate}`)
-  );
-}
+// function filterDate(data, searchDate) {
+//   return data.filter((e) =>
+//     new Date(e.paymentDate).toString().includes(`${searchDate}`)
+//   );
+// }
 
 function getTotalValue(data, searchName) {
   return data
@@ -33,5 +33,4 @@ module.exports = {
   length,
   getTotalValue,
   getTotalAverage,
-  filterDate,
 };

@@ -6,7 +6,6 @@ const {
   length,
   getTotalValue,
   getTotalAverage,
-  filterDate,
 } = require('./../utils/filtering');
 
 router.get('/', async (req, res, next) => {
@@ -20,60 +19,57 @@ router.get('/', async (req, res, next) => {
 router.get('/categories', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
-    .then((result) =>
-      res.send({
-        Food: {
-          totalNumber: length(result, 'Food'),
-          totalValue: getTotalValue(result, 'Food'),
-          averageValue: getTotalAverage(result, 'Food'),
-        },
-        Miscellaneous: {
-          totalNumber: length(result, 'Miscellaneous'),
-          totalValue: getTotalValue(result, 'Miscellaneous'),
-          averageValue: getTotalAverage(result, 'Miscellaneous'),
-        },
-        Charity: {
-          totalNumber: length(result, 'Charity'),
-          totalValue: getTotalValue(result, 'Charity'),
-          averageValue: getTotalAverage(result, 'Charity'),
-        },
-        Travel: {
-          totalNumber: length(result, 'Travel'),
-          totalValue: getTotalValue(result, 'Travel'),
-          averageValue: getTotalAverage(result, 'Travel'),
-        },
-        Transport: {
-          totalNumber: length(result, 'Transport'),
-          totalValue: getTotalValue(result, 'Transport'),
-          averageValue: getTotalAverage(result, 'Transport'),
-        },
-      })
-    )
+    .then((result) => {
+      let categoriesObj = {};
+      let categories = [
+        'Food',
+        'Travel',
+        'Transport',
+        'Miscellaneous',
+        'Charity',
+      ];
+      res.send(
+        categories.map((category) => {
+          return (categoriesObj.category = {
+            totalNumber: length(result, `${category}`),
+            totalValue: getTotalValue(result, `${category}`),
+            averageValue: getTotalAverage(result, `${category}`),
+          });
+        })
+      );
+    })
+    // res.send({
+    //   Food: {
+    //     totalNumber: length(result, 'Food'),
+    //     totalValue: getTotalValue(result, 'Food'),
+    //     averageValue: getTotalAverage(result, 'Food'),
+    //   },
+    //   Miscellaneous: {
+    //     totalNumber: length(result, 'Miscellaneous'),
+    //     totalValue: getTotalValue(result, 'Miscellaneous'),
+    //     averageValue: getTotalAverage(result, 'Miscellaneous'),
+    //   },
+    //   Charity: {
+    //     totalNumber: length(result, 'Charity'),
+    //     totalValue: getTotalValue(result, 'Charity'),
+    //     averageValue: getTotalAverage(result, 'Charity'),
+    //   },
+    //   Travel: {
+    //     totalNumber: length(result, 'Travel'),
+    //     totalValue: getTotalValue(result, 'Travel'),
+    //     averageValue: getTotalAverage(result, 'Travel'),
+    //   },
+    //   Transport: {
+    //     totalNumber: length(result, 'Transport'),
+    //     totalValue: getTotalValue(result, 'Transport'),
+    //     averageValue: getTotalAverage(result, 'Transport'),
+    //   },
+    // })
+
     .catch(next);
 });
 
 ///// get request for all transactions by date.
-
-// router.get('/cashflow/attempt1', (req, res, next) => {
-//   fetch('http://54.154.227.172:3000/transactions')
-//     .then((res) => res.json())
-//     .then((result) => {
-//       let filter = findDates().map((e) => {
-//         return paymentDates.includes(e)
-//           ? { e: filterDate(result, e) }
-//           : {
-//               date: {
-//                 totalNumber: 0,
-//                 totalValue: 0,
-//                 averageValue: 0,
-//               },
-//             };
-//       });
-
-//       res.send(filter);
-//     })
-//     .catch(next);
-// });
 
 router.get('/cashflow', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')

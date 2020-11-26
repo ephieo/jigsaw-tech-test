@@ -6,19 +6,22 @@
   "scripts": {
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
-    "test": "./test/test.sh"
+    "test": "./test/test.sh ; node ./test/tapetest.js | tap-spec"
+    
   },
   "author": "jigsaw.xyz",
   "license": "UNLICENSED",
   "dependencies": {
     "express": "^4.16.4",
     "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "tape": "^5.0.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "tap-spec": "^5.0.0"
   }
 }
