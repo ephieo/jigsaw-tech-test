@@ -7,7 +7,11 @@ const {
   getTotalValue,
   getTotalAverage,
 } = require('../src/utils/categoryFiltering');
-
+const {
+  dateLength,
+  getDateAverage,
+  getDateTotalValue,
+} = require('../src/utils/dateFiltering');
 test('testing that dates function returns an array of dates', (t) => {
   t.equal(
     typeof findDates() === 'object',
@@ -40,5 +44,27 @@ test('testing that this function returns the average of all food transactions', 
     111.625,
     'should return the average for all Food transactions '
   );
+  t.end();
+});
+
+/////tests for date calculative functions
+
+test('testing if the function returns length of arr of transactions by date', (t) => {
+  let date = 'Fri Oct 09 2020 01:00:00 GMT+0100 (British Summer Time)';
+  t.equal(dateLength(testFetchData, date), 6, 'should return number');
+  t.end();
+});
+test('testing if the function returns average of the transactions for the given date', (t) => {
+  let date = 'Fri Oct 09 2020 01:00:00 GMT+0100 (British Summer Time)';
+  t.equal(
+    getDateAverage(testFetchData, date),
+    26.166666666666668,
+    'should return number'
+  );
+  t.end();
+});
+test('testing if the function returns length of arr of transactions by date', (t) => {
+  let date = 'Fri Oct 09 2020 01:00:00 GMT+0100 (British Summer Time)';
+  t.equal(getDateTotalValue(testFetchData, date), 157, 'should return number');
   t.end();
 });
