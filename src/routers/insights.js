@@ -30,7 +30,9 @@ router.get('/categories', (req, res, next) => {
       ];
       res.send(
         categories.map((category) => {
+          categoriesObj[category] = '';
           return (categoriesObj.category = {
+            categoryName: `${category}`,
             totalNumber: length(result, `${category}`),
             totalValue: getTotalValue(result, `${category}`),
             averageValue: getTotalAverage(result, `${category}`),
@@ -38,34 +40,6 @@ router.get('/categories', (req, res, next) => {
         })
       );
     })
-    // res.send({
-    //   Food: {
-    //     totalNumber: length(result, 'Food'),
-    //     totalValue: getTotalValue(result, 'Food'),
-    //     averageValue: getTotalAverage(result, 'Food'),
-    //   },
-    //   Miscellaneous: {
-    //     totalNumber: length(result, 'Miscellaneous'),
-    //     totalValue: getTotalValue(result, 'Miscellaneous'),
-    //     averageValue: getTotalAverage(result, 'Miscellaneous'),
-    //   },
-    //   Charity: {
-    //     totalNumber: length(result, 'Charity'),
-    //     totalValue: getTotalValue(result, 'Charity'),
-    //     averageValue: getTotalAverage(result, 'Charity'),
-    //   },
-    //   Travel: {
-    //     totalNumber: length(result, 'Travel'),
-    //     totalValue: getTotalValue(result, 'Travel'),
-    //     averageValue: getTotalAverage(result, 'Travel'),
-    //   },
-    //   Transport: {
-    //     totalNumber: length(result, 'Transport'),
-    //     totalValue: getTotalValue(result, 'Transport'),
-    //     averageValue: getTotalAverage(result, 'Transport'),
-    //   },
-    // })
-
     .catch(next);
 });
 
