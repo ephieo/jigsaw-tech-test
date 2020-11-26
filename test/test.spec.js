@@ -1,6 +1,8 @@
 const chai = require('chai');
 const rp = require('request-promise');
 
+//const assert = require('chai').assert;
+chai.should();
 async function request(path) {
   return rp({
     url: `http://localhost:3000/insights/${path}`,

@@ -6,7 +6,7 @@ const {
   length,
   getTotalValue,
   getTotalAverage,
-} = require('./../src/utils/filtering');
+} = require('../src/utils/categoryFiltering');
 
 test('testing that dates function returns an array of dates', (t) => {
   t.equal(
@@ -19,7 +19,7 @@ test('testing that dates function returns an array of dates', (t) => {
 
 test('testing that this function returns the length of a filtered array', (t) => {
   t.equal(
-    length(testFetchData, 'Food'),
+    length(testFetchData, 'Food', 'category'),
     24,
     'should return the length of a filtered array conmtaining twenty-four food transactions'
   );

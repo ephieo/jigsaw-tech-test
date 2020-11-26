@@ -6,7 +6,12 @@ const {
   length,
   getTotalValue,
   getTotalAverage,
-} = require('./../utils/filtering');
+} = require('../utils/categoryFiltering');
+const {
+  dateLength,
+  getDateAverage,
+  getDateTotalValue,
+} = require('../utils/dateFiltering');
 
 router.get('/', async (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
@@ -20,7 +25,6 @@ router.get('/categories', (req, res, next) => {
   fetch('http://54.154.227.172:3000/transactions')
     .then((res) => res.json())
     .then((result) => {
-      let categoriesObj = {};
       let categories = [
         'Food',
         'Travel',
@@ -30,13 +34,12 @@ router.get('/categories', (req, res, next) => {
       ];
       res.send(
         categories.map((category) => {
-          categoriesObj[category] = '';
-          return (categoriesObj.category = {
+          return {
             categoryName: `${category}`,
             totalNumber: length(result, `${category}`),
             totalValue: getTotalValue(result, `${category}`),
             averageValue: getTotalAverage(result, `${category}`),
-          });
+          };
         })
       );
     })
@@ -52,29 +55,9 @@ router.get('/cashflow', (req, res, next) => {
       let transactionObj = paymentDates.map((date) => {
         return {
           date: `${date}`,
-          totalNumber: result.filter((e) =>
-            new Date(e.paymentDate).toString().includes(`${date}`)
-          ).length,
-          averageValue:
-            result
-              .filter((e) =>
-                new Date(e.paymentDate).toString().includes(`${date}`)
-              )
-              .map((obj) => {
-                return obj.amount;
-              })
-              .reduce((a, b) => a + b) /
-            result.filter((e) =>
-              new Date(e.paymentDate).toString().includes(`${date}`)
-            ).length,
-          totalValue: result
-            .filter((e) =>
-              new Date(e.paymentDate).toString().includes(`${date}`)
-            )
-            .map((obj) => {
-              return obj.amount;
-            })
-            .reduce((a, b) => a + b),
+          totalNumber: dateLength(result, date),
+          averageValue: getDateAverage(result, date),
+          totalValue: getDateTotalValue(result, date),
         };
       });
       let noTransactionObj = findDates()

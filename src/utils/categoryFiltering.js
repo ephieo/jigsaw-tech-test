@@ -1,13 +1,7 @@
 function length(data, searchName) {
   return data.filter((e) => e.category === `${searchName}`).length;
 }
-
-// function filterDate(data, searchDate) {
-//   return data.filter((e) =>
-//     new Date(e.paymentDate).toString().includes(`${searchDate}`)
-//   );
-// }
-
+//e.category
 function getTotalValue(data, searchName) {
   return data
     .filter((e) => e.category === `${searchName}`)
