@@ -2,7 +2,8 @@
 
 
 # UPDATE 
-I kept working on the tech test after the deadline so it's complete and refactored on the branch called : after-deadline-changes 
+I kept working on the tech test after the deadline so it's complete and refactored on the branch called : after-deadline-changes.
+I also refactored the tests to use chai alongside tape and all tests now pass. 
 
 # HOW TO USE :
 - Clone the repo. 
