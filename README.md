@@ -1,5 +1,17 @@
 # Jigsaw Tech Test - Ephie Oyedoh 
 
+
+# UPDATE 
+I kept working on the tech test after the deadline so it's complete and refactored on the branch called : after-deadline-changes 
+
+# HOW TO USE :
+- Clone the repo. 
+- Make sure that you navigate into the recruitment folder. 
+- Run `npm i` or `npm install` 
+- Then run `npm run dev` or `npm run start`
+- Click the link in the terminal that will open up the routes in your browser 
+- you will find the main route containing all transactions on http://localhost:3000/insights/
+
 ## How it went ?
 
 - I seemed to do okay with the category route but struggled with the cashflow route. 
