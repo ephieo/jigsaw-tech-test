@@ -25,7 +25,7 @@ I also refactored the tests to use chai alongside tape and all tests now pass.
 - the "/category" route works and sends back calculated data fetched from the given route. 
 - the "/cashflow" route renders back a list of ordered dates but I struggled to filter the return data by dates whithout writing repeated code. 
 - However while writing this readme I tried again and managed to render the calculated values on the "/cashflow" route.
-~~ The "/cashflow/attempt1" route was my attempt at rendering the responses dependent on the date range given by the transaction dates.~~
+<del> The "/cashflow/attempt1" route was my attempt at rendering the responses dependent on the date range given by the transaction dates.</del>
 - The "/cashflow" route shows the transactions only ordered by days that money was spent. 
 ### Overall I enjoyed the opportunity to try out the tech test it was a challenge, but it was a challenge I enjoyed. 
 
